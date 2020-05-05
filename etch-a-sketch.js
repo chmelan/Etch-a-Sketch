@@ -10,14 +10,41 @@ function makeGrid(length) {
   };
 };
 
+function promptGridSize(){
+    return parseInt(prompt("Enter the value for the size of the grid" , 16));
+}
 
+function changeGridSize(){ //allows the user to change the griz size
+const sizeButton = document.querySelector("#sizeBtn")
+sizeButton.addEventListener("click", (e)=>{
+    removeAllChildren(container); // removes old divs
+    makeGrid(promptGridSize()); // creates a new grid size with a user prompt
+    enableChangeOnMouseover(); //allows for drawing on newly created divs
+    });
+}
 
-makeGrid(16);
-
+function enableChangeOnMouseover(){
 const divContainer = container.querySelectorAll("div");
 divContainer.forEach(div=>{;
     div.addEventListener("mouseover", (e) =>{;
         div.classList.add("black");
-        e.stopPropagation(); //stops propegation
+        e.stopPropagation(); //stops propegation upwards
     });
 });
+}
+function removeAllChildren(parentNode){
+    while (parentNode.firstChild) {
+        parentNode.removeChild(parentNode.lastChild);
+    }
+}
+function resetCellClass(){
+    const divContainer = container.querySelectorAll("div");
+    divContainer.forEach(div=>{
+        div.className = "grid-item"
+    })
+    
+}
+
+makeGrid(16);
+enableChangeOnMouseover();
+changeGridSize();
