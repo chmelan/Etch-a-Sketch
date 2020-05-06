@@ -8,7 +8,7 @@ const warmBtn = document.querySelector("#warmBtn");
 const coolBtn = document.querySelector("#coolBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const sizeBtn = document.querySelector("#sizeBtn");//complete
-let drawColor = "black"
+let drawColor = "red"
 
 
 
@@ -38,33 +38,44 @@ function enableDrawOnMouseover(drawColor){
 const divContainer = container.querySelectorAll("div");
 divContainer.forEach(div=>{;
     div.addEventListener("mouseover", (e) =>{;
-        div.className = "";
-        div.classList.add(drawColor);
+        div.style.backgroundColor = drawColor;
         e.stopPropagation(); //stops propegation upwards
     });
 });
 }
+
 function removeAllChildren(parentNode){
     while (parentNode.firstChild) {
         parentNode.removeChild(parentNode.lastChild);
     }
 }
 
-function resetCellClass(){
+function resetBackgroundColor(){
     const divContainer = container.querySelectorAll("div");
     divContainer.forEach(div=>{
-        //div.className = "";
-        div.className = "grid-item";
+        div.style.backgroundColor = "white";
     })
     
 }
+
 function enableClearButton(){
     clearBtn.addEventListener("click", (e) => {
-        resetCellClass();
+        resetBackgroundColor();
     });
 };
-
+function enableBlackButton(){
+    blackBtn.addEventListener("click", (e)=>{
+    enableDrawOnMouseover("black");
+    })
+}
+function enableGreyScaleButton(){
+    greyScaleBtn.addEventListener("click", (e)=>{
+    enableDrawOnMouseover("grey");
+    })
+}
 makeGrid(16);
 enableDrawOnMouseover(drawColor);
 changeGridSize();
 enableClearButton();
+enableBlackButton();
+enableGreyScaleButton();
