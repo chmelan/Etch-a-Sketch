@@ -11,24 +11,20 @@ const color8Btn = document.querySelector("#color8");
 const color9Btn = document.querySelector("#color9");
 const color10btn = document.querySelector("#color10");
 
+const standardColorSetBtn = document.querySelector("#standardColorSetBtn")
+const warmColorSetBtn = document.querySelector("#warmColorSetBtn")
+const coolColorSetBtn = document.querySelector("#coolColorSetBtn")
+
 const singleBtn = document.querySelector("#singleBtn");
 const greyScaleBtn = document.querySelector("#greyScaleBtn");
 const aestheticRainbowBtn = document.querySelector("#aestheticRainbowBtn");
 const rainbowBtn = document.querySelector("#rainbowBtn");
+
 const clearBtn = document.querySelector("#clearBtn");//complete
 const sizeBtn = document.querySelector("#sizeBtn");//complete
 let drawColor = "black"
 
-let color1 = "red";
-let color2 = "orange";
-let color3 = "yellow";
-let color4 = "green";
-let color5 = "blue";
-let color6 = "purple";
-let color7 = "pink";
-let color8 = "brown";
-let color9 = "black";
-let color10 = "white";
+let colorSet = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black", "white" ]
 
 
 function makeGrid(length) { //makes a grid with a width and height of "length"
@@ -123,36 +119,30 @@ function getRandomColor() { //produces a random color
     return color;
   }
 function getAestheticRainbowColor(){
-    switch(Math.floor(Math.random()*10)){
+    switch(Math.floor(Math.random()*8)){
         case 0: 
-            return color1;
+            return colorSet[0];
             break;
         case 1: 
-            return color2;
+            return colorSet[1];
             break;
         case 2: 
-            return color3;
+            return colorSet[2];
             break;
         case 3: 
-            return color4;
+            return colorSet[3];
             break;
         case 4: 
-            return color5;
+            return colorSet[4];
             break;
         case 5:
-            return color6;
+            return colorSet[5];
             break;
         case 6:
-            return color7;
+            return colorSet[6];
             break;
         case 7: 
-            return color8;
-            break;
-        case 8:
-            return color9;
-            break;
-        case 10:
-            return color10;
+            return colorSet[7];
             break;
     }
     
