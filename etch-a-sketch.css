@@ -11,4 +11,7 @@
   .grid-item {
     border: 1px solid #ddd;
   }
- 
+ #colorContainer{
+     display: flex;
+     flex-direction: row;
+ }
