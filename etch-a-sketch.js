@@ -187,7 +187,7 @@ function enableStandardColorSetButton(){
 };
        
 makeGrid(16);
-setDrawMode("mouseover", singleDrawFunction, drawColor);
+setDrawMode(mouseMode, singleDrawFunction, drawColor);
 changeGridSize();
 enableStandardColorSetButton();
 enableWarmColorSetButton();
