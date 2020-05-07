@@ -1,4 +1,35 @@
-
+body {
+    line-height: 1;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: monospace;
+} 
+h1 {
+    border: 2px solid black;
+    padding: 20px;
+    font-size: 50px;
+}
+button{
+display: inline-block;
+padding:0.3em 1.2em;
+margin:0 0.1em 0.1em 0;
+border:0.16em solid rgba(255,255,255,0);
+border-radius:2em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+color:white;
+text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+text-align:center;
+transition: all 0.2s;
+background-color: black;
+}
+button:hover{
+    border-color: rgba(255,255,255,1);
+}
   #container {
     display: grid;
     grid-gap: 0em;
@@ -6,6 +37,7 @@
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     width: 500px;
     height: 500px;
+    margin: auto;
   }
   
   .grid-item {
@@ -14,4 +46,22 @@
  #colorContainer{
      display: flex;
      flex-direction: row;
+     border: 2px solid black;
+     height: 40px;
+ }
+ .colorPickerButton{
+     width: 10%;
+     height: 100%;
+ }
+ #topButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+ }
+ #bottomButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
  }

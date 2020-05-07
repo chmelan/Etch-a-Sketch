@@ -45,7 +45,7 @@ function changeGridSize(){ //allows the user to change the grid size
 sizeBtn.addEventListener("click", (e)=>{
     removeAllChildren(container); // removes old divs
     makeGrid(promptGridSize()); // creates a new grid size with a user prompt
-    setDrawMode(drawColor); //allows for drawing on newly created divs
+    setDrawMode(mouseMode, singleDrawFunction, drawColor); //allows for drawing on newly created divs
     });
 }
 
@@ -57,13 +57,6 @@ divContainer.forEach(div=>{;
         e.stopPropagation();
     });
 });
-}
-
-function removeAllEventListeners(element, eventType){
-element.removeEventListener(eventType, (singleDrawFunction));
-element.removeEventListener(eventType, greyScaleDrawFunction);
-element.removeEventListener(eventType, aestheticRainbowDrawFunction);
-element.removeEventListener(eventType, rainbowDrawFunction);
 }
 
 function singleDrawFunction(element, color){
@@ -189,6 +182,7 @@ function enableStandardColorSetButton(){
         colorSet = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black", "white" ];
         updateColorPickerButtons();
         setDrawMode(mouseMode, singleDrawFunction, colorSet[0]);
+        standardColorSetBtn.classList.add ("active");
     });
 };
        
