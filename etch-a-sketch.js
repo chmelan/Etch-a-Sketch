@@ -17,7 +17,7 @@ const warmColorSetBtn = document.querySelector("#warmColorSetBtn")
 const coolColorSetBtn = document.querySelector("#coolColorSetBtn")
 
 const singleBtn = document.querySelector("#singleBtn");
-const aestheticRainbowBtn = document.querySelector("#aestheticRainbowBtn");
+const colorRangeBtn = document.querySelector("#colorRangeBtn");
 const rainbowBtn = document.querySelector("#rainbowBtn");
 
 const clearBtn = document.querySelector("#clearBtn");//complete
@@ -70,8 +70,8 @@ function greyScaleDrawFunction(element, color){
 function rainbowDrawFunction(element){
     element.style.backgroundColor = getRandomColor();
 }
-function aestheticRainbowDrawFunction(element){
-    element.style.backgroundColor = getAestheticRainbowColor();
+function colorRangeDrawFunction(element){
+    element.style.backgroundColor = getColorRange();
 }
 function removeAllChildren(parentNode){
     while (parentNode.firstChild) {
@@ -105,9 +105,9 @@ function enableRainbowButton(){
     setDrawMode(mouseMode, rainbowDrawFunction);
     })
 }
-function enableAestheticRainbowButton(){
-    aestheticRainbowBtn.addEventListener("click", (e)=>{
-        setDrawMode(mouseMode, aestheticRainbowDrawFunction);
+function enableColorRangeButton(){
+    colorRangeBtn.addEventListener("click", (e)=>{
+        setDrawMode(mouseMode, colorRangeDrawFunction);
     })
 }
 function getRandomColor() { //produces a random color
@@ -118,7 +118,7 @@ function getRandomColor() { //produces a random color
     }
     return color;
   }
-function getAestheticRainbowColor(){
+function getColorRange(){
     switch(Math.floor(Math.random()*8)){
         case 0: 
             return colorSet[0];
@@ -195,5 +195,5 @@ enableCoolColorSetButton();
 enableClearButton();
 enableSingleButton();
 enableRainbowButton();
-enableAestheticRainbowButton();
+enableColorRangeButton();
 updateColorPickerButtons();
