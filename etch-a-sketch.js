@@ -1,5 +1,6 @@
 //Initialize all variables
 const container = document.querySelector("#container");
+const colorContainer = document.querySelector("#colorContainer")
 const color1Btn = document.querySelector("#color1");
 const color2Btn = document.querySelector("#color2");
 const color3Btn = document.querySelector("#color3");
@@ -16,13 +17,13 @@ const warmColorSetBtn = document.querySelector("#warmColorSetBtn")
 const coolColorSetBtn = document.querySelector("#coolColorSetBtn")
 
 const singleBtn = document.querySelector("#singleBtn");
-const greyScaleBtn = document.querySelector("#greyScaleBtn");
 const aestheticRainbowBtn = document.querySelector("#aestheticRainbowBtn");
 const rainbowBtn = document.querySelector("#rainbowBtn");
 
 const clearBtn = document.querySelector("#clearBtn");//complete
 const sizeBtn = document.querySelector("#sizeBtn");//complete
-let drawColor = "black"
+let drawColor = "red";
+let mouseMode = "mouseover";
 
 let colorSet = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black", "white" ]
 
@@ -44,31 +45,41 @@ function changeGridSize(){ //allows the user to change the grid size
 sizeBtn.addEventListener("click", (e)=>{
     removeAllChildren(container); // removes old divs
     makeGrid(promptGridSize()); // creates a new grid size with a user prompt
-    enableDrawOnMouseover(drawColor); //allows for drawing on newly created divs
+    setDrawMode(drawColor); //allows for drawing on newly created divs
     });
 }
 
-function enableDrawOnMouseover(drawColor){
+function setDrawMode(mouseMode, drawFunction, color){
 const divContainer = container.querySelectorAll("div");
 divContainer.forEach(div=>{;
-    div.addEventListener("mouseover", (e) =>{;
-        if (drawColor == "rainbow"){
-            div.style.backgroundColor = getRandomColor();
-            e.stopPropagation(); //stops propegation upwards
-        }
-        else if (drawColor == "greyScale"){
-            div.style.backgroundColor = "grey";
-        }
-        else if (drawColor == "aestheticRainbow"){
-            div.style.backgroundColor = getAestheticRainbowColor();
-        }
-        else{
-            div.style.backgroundColor = drawColor;
-        }
+    div.addEventListener(mouseMode, (e) =>{;
+        drawFunction(div, color);
+        e.stopPropagation();
     });
 });
 }
 
+function removeAllEventListeners(element, eventType){
+element.removeEventListener(eventType, (singleDrawFunction));
+element.removeEventListener(eventType, greyScaleDrawFunction);
+element.removeEventListener(eventType, aestheticRainbowDrawFunction);
+element.removeEventListener(eventType, rainbowDrawFunction);
+}
+
+function singleDrawFunction(element, color){
+    return element.style.backgroundColor = color;
+}
+function greyScaleDrawFunction(element, color){
+    element.style.backgroundColor = color;
+    let opacity = element.style.opacity;
+        element.style.opacity = opacity ? (parseFloat(opacity) + 0.1) : 0.1;
+}
+function rainbowDrawFunction(element){
+    element.style.backgroundColor = getRandomColor();
+}
+function aestheticRainbowDrawFunction(element){
+    element.style.backgroundColor = getAestheticRainbowColor();
+}
 function removeAllChildren(parentNode){
     while (parentNode.firstChild) {
         parentNode.removeChild(parentNode.lastChild);
@@ -78,6 +89,7 @@ function removeAllChildren(parentNode){
 function resetBackgroundColor(){
     const divContainer = container.querySelectorAll("div");
     divContainer.forEach(div=>{
+        div.style.opacity = null;
         div.style.backgroundColor = "white";
     })
     
@@ -90,24 +102,19 @@ function enableClearButton(){
 };
 function enableSingleButton(){
     singleBtn.addEventListener("click", (e)=>{
-    enableDrawOnMouseover("black");
+    setDrawMode(mouseMode, singleDrawFunction, drawColor);
     })
 }
 
-function enableGreyScaleButton(){
-    greyScaleBtn.addEventListener("click", (e)=>{
-    enableDrawOnMouseover("greyScale");
-    })
-}
 
 function enableRainbowButton(){
     rainbowBtn.addEventListener("click", (e)=>{
-    enableDrawOnMouseover("rainbow");
+    setDrawMode(mouseMode, rainbowDrawFunction);
     })
 }
 function enableAestheticRainbowButton(){
     aestheticRainbowBtn.addEventListener("click", (e)=>{
-        enableDrawOnMouseover("aestheticRainbow");
+        setDrawMode(mouseMode, aestheticRainbowDrawFunction);
     })
 }
 function getRandomColor() { //produces a random color
@@ -147,11 +154,52 @@ function getAestheticRainbowColor(){
     }
     
 }
+
+function updateColorPickerButtons(){// changes color of buttons, and adda na event listener that changes the draw color per button
+const colorPickerContainer = colorContainer.querySelectorAll("div")
+let i = 0
+colorPickerContainer.forEach(div=>{
+    let color = colorSet[i];
+    div.style.backgroundColor = color;
+    div.addEventListener("click", (e)=>{;
+        setDrawMode(mouseMode, singleDrawFunction, color);
+        drawColor = color;
+    });
+    i++;
+});
+};
+
+function enableWarmColorSetButton(){
+warmColorSetBtn.addEventListener("click", (e)=>{
+colorSet = ["DarkRed", "red", "OrangeRed", "orange", "yellow", "gold", "coral", "brown", "black", "white"];
+updateColorPickerButtons();
+setDrawMode(mouseMode, singleDrawFunction, colorSet[0]);
+});
+};
+function enableCoolColorSetButton(){
+    coolColorSetBtn.addEventListener("click", (e)=>{
+    colorSet = ["purple", "BlueViolet", "blue", "CornflowerBlue", "Aquamarine", "green", "DarkSeaGreen", "DarkGreen", "black", "white"];
+    updateColorPickerButtons();
+    setDrawMode(mouseMode, singleDrawFunction, colorSet[0]);
+    });
+};
+    
+function enableStandardColorSetButton(){
+    standardColorSetBtn.addEventListener("click", (e)=>{
+        colorSet = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black", "white" ];
+        updateColorPickerButtons();
+        setDrawMode(mouseMode, singleDrawFunction, colorSet[0]);
+    });
+};
+       
 makeGrid(16);
-enableDrawOnMouseover(drawColor);
+setDrawMode("mouseover", singleDrawFunction, drawColor);
 changeGridSize();
+enableStandardColorSetButton();
+enableWarmColorSetButton();
+enableCoolColorSetButton();
 enableClearButton();
 enableSingleButton();
-enableGreyScaleButton();
 enableRainbowButton();
 enableAestheticRainbowButton();
+updateColorPickerButtons();
