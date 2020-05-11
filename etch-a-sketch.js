@@ -38,7 +38,21 @@ function makeGrid(length) { //makes a grid with a width and height of "length"
 };
 
 function promptGridSize(){
-    return parseInt(prompt("Enter the value for the size of the grid" , 16));
+    let gridSize = parseInt(prompt("Enter the value for the size of the grid between 10 and 50" , 16));
+    console.log(gridSize);
+    if (!Number.isInteger(gridSize)){
+        alert("That's not a valid value!")
+        return promptGridSize();
+    }
+    else if (gridSize < 10){
+        alert("That number is too small!")
+        return promptGridSize();
+    }
+    else if (gridSize > 50){
+        alert("That number is too big!")
+        return promptGridSize();
+    }
+    return gridSize;
 }
 
 function changeGridSize(){ //allows the user to change the grid size
