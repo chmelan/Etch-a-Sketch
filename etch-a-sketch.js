@@ -2,7 +2,7 @@
 const container = document.querySelector("#container");
 const colorContainer = document.querySelector("#colorContainer")
 const colorModeContainer = document.querySelector("#colorModeContainer")
-const colorSetContainer = document.querySelectorAll("#colorSetContainer")
+const colorSetContainer = document.querySelector("#colorSetContainer")
 
 
 const standardColorSetBtn = document.querySelector("#standardColorSetBtn")
@@ -142,10 +142,8 @@ function setColorMode(event){
 let target = event.target
 let drawMode = event.target.dataset.drawMode
 const colorModeButtonList = colorModeContainer.querySelectorAll("button")
-Array.from(colorModeButtonList).forEach(button => button.classList.remove("activeButton"));
-
-target.classList.add("activeButton")
 if (!target.matches("button")) return;
+
 else if (drawMode === "single"){
     setSingleDrawMode()
 }
@@ -158,8 +156,29 @@ else if (drawMode === "rainbow"){
 else if (drawMode === "opacity"){
     setOpacityDrawMode()
 }
-
+Array.from(colorModeButtonList).forEach(button => button.classList.remove("activeButton" ));
+target.classList.add("activeButton")
 }
+
+function setColorSet(event){
+    let target = event.target
+    let colorSet = event.target.dataset.colorSet
+    const colorSetButtonList = colorSetContainer.querySelectorAll("button")
+    if (!target.matches("button")) return;
+    
+    else if (colorSet === "standard"){
+        console.log("standard")
+    }
+    else if (colorSet === "warm"){
+        console.log("warm")
+    }
+    else if (colorSet === "cool"){
+        console.log("cool")
+    }
+    Array.from(colorSetButtonList).forEach(button => button.classList.remove("activeButton" ));
+    target.classList.add("activeButton")
+    }
+
 
 clearBtn.addEventListener("click", resetBackgroundColor)
 sizeBtn.addEventListener("click", setNewGridSize)
@@ -169,6 +188,7 @@ clickBtn.addEventListener("click", setMouseDownMouseMode)
 
 
 colorModeContainer.addEventListener("click", setColorMode)
+colorSetContainer.addEventListener("click", setColorSet)
 
 
        
