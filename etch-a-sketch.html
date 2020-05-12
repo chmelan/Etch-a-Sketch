@@ -7,26 +7,26 @@
     </head>
     <body>
         <h1>ETCH-A-SKETCH</h1>
-        <div id=colorContainer>
-            <div class = "colorPickerButton" id=color1>color 1 </div>
-            <div class = "colorPickerButton" id=color2>color 2 </div>
-            <div class = "colorPickerButton" id=color3>color 3 </div>
-            <div class = "colorPickerButton" id=color4>color 4 </div>
-            <div class = "colorPickerButton" id=color5>color 5 </div>
-            <div class = "colorPickerButton" id=color6>color 6 </div>
-            <div class = "colorPickerButton" id=color7>color 7 </div>
-            <div class = "colorPickerButton" id=color8>color 8 </div>
-            <div class = "colorPickerButton" id=color9>color 9 </div>
-            <div class = "colorPickerButton" id=color10>color 10 </div>
+        <div class=colorPickerContainer >
+            <div class = "colorPickerButton activeColorPickerButton" data-color="" id="firstColorPickerButton"></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color="" id="whiteColorPickerButton">ERASER</div>
         </div>
         <div id=topButtons>
             <div id="colorSetContainer">Color Set:
-                <button id=standardColorSetBtn data-color-set="standard"></button>Standard</button>
+                <button id=standardColorSetBtn class="activeButton" data-color-set="standard">Standard</button>
                 <button id=warmColorSetBtn data-color-set="warm">Warm</button>
                 <button id=coolColorSetBtn data-color-set="cool">Cool</button>
             </div>
             <div id=colorModeContainer> Color Mode:
-                <button id="singleBtn" data-draw-mode="single">Single</button>
+                <button id="singleBtn" class="activeButton" data-draw-mode="single">Single</button>
                 <button id="colorRangeBtn"data-draw-mode="colorRange"> Color Range</button>
                 <button id="rainbowBtn"data-draw-mode="rainbow">Rainbow</button>
                 <button id="opacityBtn"data-draw-mode="opacity">Opacity</button>
@@ -42,13 +42,14 @@
         <div id="bottomButtons">
             <div>
                 <button id="clearBtn">Clear</button>
-                <button id="sizeBtn">Change Grid Size</button>
+                <button id="sizeBtn">Change Grid Resolution</button>
             </div>
             <div id="mouseModeContainer">Mouse Mode:
-                <button id="hoverBtn">Hover</button>
+                <button id="hoverBtn" class="activeButton">Hover</button>
                 <button id="clickBtn">Click</button>
             </div>
         </div>
+        
         <script src="etch-a-sketch.js"></script>
     </body>
 </html>
