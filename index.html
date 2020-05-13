@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nick's Etch-a-Sketch</title>
+        <link rel="stylesheet" type="text/css" href="css-reset.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="etch-a-sketch.css" media="screen"/>
+    </head>
+    <body>
+        <h1>ETCH-A-SKETCH</h1>
+        <div class=colorPickerContainer >
+            <div class = "colorPickerButton activeColorPickerButton" data-color="" id="firstColorPickerButton"></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color=""></div>
+            <div class = "colorPickerButton" data-color="" id="whiteColorPickerButton">ERASER</div>
+        </div>
+        <div id=topButtons>
+            <div id="colorSetContainer">Color Set:
+                <button id=standardColorSetBtn class="activeButton" data-color-set="standard">Standard</button>
+                <button id=warmColorSetBtn data-color-set="warm">Warm</button>
+                <button id=coolColorSetBtn data-color-set="cool">Cool</button>
+            </div>
+            <div id=colorModeContainer> Color Mode:
+                <button id="singleBtn" class="activeButton" data-draw-mode="single">Single</button>
+                <button id="colorRangeBtn"data-draw-mode="colorRange"> Color Range</button>
+                <button id="rainbowBtn"data-draw-mode="rainbow">Rainbow</button>
+                <button id="opacityBtn"data-draw-mode="opacity">Opacity</button>
+            </div>
+        </div>
+        <div id="container" 
+            data-draw-color="red" 
+            data-mouse-mode="mouseover"
+            data-previous-mouse-mode="" 
+            data-draw-mode="single">
+
+        </div>
+        <div id="bottomButtons">
+            <div>
+                <button id="clearBtn">Clear</button>
+                <button id="sizeBtn">Change Grid Resolution</button>
+            </div>
+            <div id="mouseModeContainer">Mouse Mode:
+                <button id="hoverBtn" class="activeButton">Hover</button>
+                <button id="clickBtn">Click</button>
+            </div>
+        </div>
+        
+        <script src="etch-a-sketch.js"></script>
+    </body>
+</html>
